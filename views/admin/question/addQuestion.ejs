@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>
+        <%=data.title%>
+    </title>
+
+    <%- include('../partials/head'); %>
+
+        <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs.min.css"> -->
+        <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/atom-one-dark.min.css"> -->
+        <link rel="stylesheet"
+            href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/monokai-sublime.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+        <!-- Theme included stylesheets -->
+        <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+
+        <!-- Main Quill library -->
+        <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+        <!-- jquery -->
+        <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!--  -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"
+            integrity="sha384-KiWOvVjnN8qwAZbuQyWDIbfCLFhLXNETzBQjA/92pIowpC0d2O3nppDGQVgwd2nB" crossorigin="anonymous">
+
+        <!-- The loading of KaTeX is deferred to speed up page rendering -->
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+            integrity="sha384-0fdwu/T/EQMsQlrHCCHoH10pkPLlKA1jL5dFyUOvB3lfeT2540/2g6YgSi2BL14p"
+            crossorigin="anonymous"></script>
+
+
+
+</head>
+
+<body id="body-pd">
+
+    <section>
+        <!-- Nav Bar -->
+        <%- include('../partials/header'); %>
+            <div class="container">
+                <div class="container-fluid">
+                    <h2 class="text-center">
+                        <%= data.title %>
+                    </h2>
+                    <div class="status"></div>
+                    <div class="mb-3">
+                        <label for="question" class="form-label">Enter Question:</label>
+                        <div id="questionEditor" name="question">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="option" class="form-label">Enter Option 1</label>
+                        <div id="optionEditor1" name="option"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="option" class="form-label">Enter Option 2</label>
+                        <div id="optionEditor2" name="option"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="option" class="form-label">Enter Option 3</label>
+                        <div id="optionEditor3" name="option"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="correctAnswer" class="form-label">Enter Option 4 <span class="text-danger">(Correct
+                                Answer)</span></label>
+                        <div id="editorCorrectAnswer" name="correctAnswer"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editorExplaination" class="form-label">Explaination</label>
+                        <div id="editorExplaination" name="explaination"></div>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="hide" name="hidden" <% if(data.question &&
+                            data.question.hidden) {%> checked <%}%> >
+                            <label class="form-check-label" for="hide">hide from course?</label>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label" for="autoSizingSelect">Select Series</label>
+                        <select class="form-select  " id="autoSizingSelect" name="subjectid">
+                            <% series.forEach(course=> { %>
+                                <!-- check if testseries exists -->
+                                <% if ( data.question) { %>
+                                    <!-- match the id with all the series id -->
+                                    <% if ( data.question.subjectId.toString()===course._id.toString()) { %>
+                                        <option value="<%= course._id %>" class="text-primary" selected="selected">
+                                            <%=course.title %>
+                                        </option>
+                                        <% return; %>
+                                            <% } %>
+                                                <% } %>
+                                                    <option value="<%= course._id %>">
+                                                        <%= course.title %>
+                                                    </option>
+                                                    <% }) %>
+                        </select>
+                    </div>
+                    <button type="submit" onclick="addQuestion()" class="btn btn-primary">
+                        <%= data.submitBtn %>
+                    </button>
+                    <div id="editorDisplay">
+                    </div>
+                </div>
+            </div>
+
+    </section>
+    <%- include('../partials/footer'); %>
+        <script src="/js/addQuestion.js"></script>
+        <script>
+            $(document).ready(function () {
+                quill.root.innerHTML=`<%- data.question? data.question.title:''%>`;
+                quillOption1.root.innerHTML=`<%- data.question? data.question.incorrectOptions[0]:''%>`;
+                quillOption2.root.innerHTML=`<%- data.question? data.question.incorrectOptions[1]:''%>`;
+                quillOption3.root.innerHTML=`<%- data.question? data.question.incorrectOptions[2]:''%>`;
+                quillExplaination.root.innerHTML=`<%- data.question? data.question.explaination:''%>`;
+                quillCorrectAnswer.root.innerHTML=`<%- data.question? data.question.correctAnswer:''%>`;
+            })
+            // post req
+            const addQuestion=() => {
+                let allOptionsNode=document.querySelectorAll("[name='option']");
+                let incorrectOptions=[];
+                Array.from(allOptionsNode).forEach(function (el) {
+                    let option=el.querySelector("[class='ql-editor']");
+                    if (option!==null)
+                        incorrectOptions.push(el.querySelector("[class='ql-editor']").innerHTML);
+                });
+
+                let title=quill.root.innerHTML.split('  ').join(' &nbsp;');
+                let correctAnswer=quillCorrectAnswer.root.innerHTML.split('  ').join(' &nbsp;');
+                let explaination=quillExplaination.root.innerHTML.split('  ').join(' &nbsp;');
+                let subjectId=document.getElementById('autoSizingSelect').value;
+                const data={ title, incorrectOptions, correctAnswer, subjectId, explaination };
+                fetch("/admin/question/<%=data.url%>", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log(data);
+                        $(".status").html(`<div class='card border border-success'><div class='card-body text-success'>${data.msg}</div></div>`);
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                        $(".status").html(`<div class='card border border-danger'><div class='card-body text-danger'>${data.msg}</div></div>`);
+                    });
+            }
+        </script>
+
+</body>
+
+</html>
+
+
+<!-- quill.root.innerHTML.split(' ').join(' &nbsp;') -->

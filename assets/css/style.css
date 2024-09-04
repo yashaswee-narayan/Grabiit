@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather:wght@300;700&family=Poppins:wght@400;600;700&display=swap");
+
+:root {
+  --primary: #5463ff;
+  --ash: #f5f5f5;
+  --highlight: #ffc300;
+  --secondary: #2f2e41;
+  --headings: #5e5e5e;
+  --danger: #ff1818;
+  --shadow: #707070;
+}
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+
+}
+/* p{
+    color:var(--ash);
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+} */
+h1 {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  color: var(--secondary);
+  font-size: 3rem;
+}
+h2 {
+  font-family: "Merriweather", serif;
+  color: var(--secondary);
+  font-size: 2.5rem;
+}
+.btn-grad { 
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+}
+
+.btn-grad {
+background-image: linear-gradient(to right, #393f93 0%, #44126d 51%, #393f93 100%);
+}
+
+.headline {
+  color: var(--secondary);
+  font-weight: bold;
+  line-height: 3rem;
+  letter-spacing: 0.02rem;
+}
+#title_underline:after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 1.5px;
+  background: #7f0000;
+  margin: 0 auto;
+  border-radius: 3px;
+}
+/************************** navbar********************* */
+a {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+}
+.navbar {
+  padding: 2% 5%;
+}
+.logo {
+  font-family: "Lobster", cursive;
+  color: var(--primary);
+}
+
+/* Footer */
+.paint-white {
+  color: var(--ash) !important;
+}
+.text-purple {
+  font-family: "poppins";
+  color: #080880;
+  font-weight: 600;
+}
+
+/********************** navbar *********************/
+.button {
+  border: none;
+  border-radius: 0.25rem;
+  color: var(--secondary);
+  background-color: var(--highlight);
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  margin: 4px 2px;
+}
+.button:hover {
+  background-color: rgb(250, 204, 52);
+}
+.brand-name {
+  font-family: "Lobster", cursive;
+  color: var(--primary);
+}
+
+.sub_button {
+  color: var(--secondary);
+  background-color: var(--highlight);
+  text-align: center;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+.sub_button:hover {
+  background-color: rgb(250, 204, 52);
+}
+
+/* For feature's card designing */
+.round-corner {
+  border: 2px solid var(--ash);
+  border-radius: 45px 15px 15px 15px;
+  box-shadow: -2px 0 4px -4px var(--shadow);
+}
+
+/* for circles with icons inside */
+.coloured-circles {
+  background-color: var(--ash);
+  width: 60px;
+  height: 60px;
+}
+/* footer  */
+
+.list-group-item {
+  border: none !important;
+  background-color: transparent;
+}
+
+
+
+/* The customed underline */
+.border-short {
+  position: relative;
+  display: inline-block;
+}
+.border-short::after {
+  content: "";
+  width: 8%;
+  height: 0.1rem;
+  background: var(--danger);
+  position: absolute;
+  left: calc(50% - 4%);
+  bottom: 0;
+}

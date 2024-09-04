@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+
+    <%- include('./partials/styles'); %>
+        <!-- External css-->
+        <link rel="stylesheet" href="/css/auth.css">
+
+</head>
+
+<body>
+    <!-- Illustration by <a href="https://icons8.com/illustrations/author/HxMFjfKZdNq2">Rosina Gavrilash</a> from <a
+        href="https://icons8.com/illustrations">Ouch!</a> -->
+    <!-- Sign in -->
+    <div class="form-container sign-in-form" id="vanish">
+        <div class="form-box sign-in-box">
+            <h2>Login</h2>
+            <form action="/login" method="post">
+                <div class="field">
+                    <i class="fa-solid fa-at"></i>
+                    <input type="email" id="text1" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="field">
+                    <i class="fa-solid fa-key"></i>
+                    <input class="pass-input" type="password" name="password" placeholder="Enter password" required>
+                    <div class="eye-btn">
+                        <i class="fa-solid fa-eye-slash"></i>
+                    </div>
+                </div>
+                <div class="forgot-link">
+                    <a onclick="popupToggle();" >Forgot password?</a>
+                </div>
+
+                
+                <input type="submit" class="submit-btn" value="Login">
+            </form>
+
+        </div>
+        <div class="imgBox sign-in-imgBox">
+            <div class="sliding-link">
+                <p>Don't have an account?</p>
+                <span class="sign-up-btn">Sign up</span>
+            </div>
+            <img src="/images/sammy-29.png" alt="">
+        </div>
+    </div>
+
+
+    <!-- Sign up -->
+    <div class="form-container sign-up-form">
+        <div class="imgBox sign-up-imgBox">
+            <div class="sliding-link">
+                <p>Already have an account?</p>
+                <span class="sign-in-btn">Sign in</span>
+            </div>
+            <img src="/images/sammy-25.png" alt="">
+        </div>
+        <div class="form-box sign-up-box">
+            <h2>Sign up</h2>
+            
+            <form action="/signup" method="post">
+                <div class="field">
+                    <i class="fa-solid fa-at"></i>
+                    <input type="email" name="email" placeholder="Enter email ID" required>
+                </div>
+                <div class="field">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="field">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="username" placeholder="Enter username" required>
+                </div>
+                <div class="field">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" name="password" placeholder="Enter password" required>
+
+                </div>
+                <div class="field">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" name="confirm-password" placeholder="Confirm password" required>
+
+                </div>
+
+                <input type="submit" class="submit-btn" value="Sign up">
+            </form>
+
+
+
+        </div>
+
+    </div>
+
+    <!-- Send the email popup -->
+    <div id="popup">
+        <div class="content">
+            <img src="images/rocket.png" alt="" class="mb-4">
+             <h2>Password Recovery</h2>
+            
+            <form action="/forgot-password" method="post">
+                <div class="field">
+                    <i class="fa-solid fa-at"></i>
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+
+                <input type="submit" class="submit-btn" value="Send" style="background-color: #d53e4c;"> 
+            </form>
+
+        </div>
+
+        <a onclick="popupToggle();" class="close" >
+            <i class="fa-solid fa-xmark"></i>
+        </a>
+
+    </div>
+    <script src="/js/auth.js"></script>
+
+</body>
+
+</html>

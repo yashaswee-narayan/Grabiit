@@ -1,0 +1,36 @@
+
+.course-img img{
+    /* height: 50%; */
+    width: 100%;
+}
+#slider
+{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.swiper-container
+{
+    width: 100%;
+}
+.swiper-slide
+{
+    background-position: center;
+    background-size: cover;
+    width: 320px;
+    /* box-shadow: 0 2px 8px var(--shadow); */
+    padding: 0 8px;
+}
+.swiper-slide-active
+{
+    opacity: 1;
+    box-shadow: none;
+}
+.swiper-3d .swiper-slide-shadow-left,
+.swiper-3d .swiper-slide-shadow-right
+{
+    background-image: none;
+}

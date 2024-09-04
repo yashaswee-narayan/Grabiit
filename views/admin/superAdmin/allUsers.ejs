@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        <%=data.title%>
+    </title>
+    <meta name="description" content="">
+    <%- include('../partials/head'); %>
+        <link rel="stylesheet" href="/css/view_result.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body id="body-pd">
+    <%- include('../partials/header'); %>
+        <!--Container Main start-->
+        <div class="row px-0">
+
+            <!-- ------------------------------------------------------------ -->
+            <% if (users.length>=1) { %>
+                <h3 class="mt-4 d-flex justify-content-center">
+                    <%=data.title%>
+                </h3>
+                <div class="col-lg-12 px-4 shadow-sm my-4 rounded ">
+
+                    <div class="d-flex align-items-center">
+                        <div class="ps-2 search-box shadow p-1">
+                            <!-- <button class="btn shadow-sm px-3 text-clack ">
+                            <i class="fa-solid fa-search pe-2"></i>Search</button> -->
+                            <input class="search-txt" type="text" name="" placeholder="Search" id="search-box"
+                                style="border: none; outline: none;" onkeyup="search()">
+                            <a class="search-btn" href="#"></a>
+                            <i class="fa-solid fa-search pe-2"></i>
+
+                        </div>
+
+                        <div class="dropdown">
+                            <a class="btn shadow btn-sm fs-6 py-1 dropdown-toggle" href="#" role="button"
+                                id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                <li><a class="dropdown-item" id="subject" style="cursor: pointer;">Name</a></li>
+                                <li><a class="dropdown-item" id="topic" style="cursor: pointer;">Date </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table mt-4" id="resultTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name/Username</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Avatar</th>
+                                    <th scope="col">College Name</th>
+                                    <th scope="col">createdAt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% let i=0 %>
+                                    <% for(user of users){%>
+                                        <tr onclick="window.location='/admin/viewresult/<%=user._id%>';"
+                                            style="cursor: pointer;" class="effect">
+
+                                            <td scope="row" class="content-tag">
+                                                <p style="font-weight: bold;">
+                                                    <%=user.name%>
+                                                </p>
+                                                <p class="fs-7">
+                                                    <%=user.username%>
+                                                </p>
+                                            </td>
+                                            <td class="content-tag py-4 new ">
+                                                <% if (user.role==1) { %>
+                                                    <p>admin</p>
+                                                    <% } else { %>
+                                                        <p>user</p>
+                                                        <%}%>
+                                            </td>
+                                            <td class="content-tag py-4 new">
+                                                <%=user.email%>
+                                            </td>
+                                            <td class="content-tag py-4 new">
+                                                <% if (user.avatar) { %>
+                                                    <img src="<%=user.avatar%>" alt="user profile pic" width="45"
+                                                        height="45" class="rounded-circle">
+                                                    <% } else {%>
+                                                        <p>NA</p>
+                                                        <% } %>
+                                            </td>
+                                            <td class="content-tag py-4 new">
+                                                <%=user.collegeName%><br />
+                                                    <%= user.graduationYear %>
+                                            </td>
+                                            <td class="content-tag py-4 date series">
+                                                <%=user.createdAt%>%>
+                                            </td>
+
+                                        </tr>
+                                        <%}%>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <%}else{%>
+                    <div class="col-lg-12 px-4 shadow-sm my-4 rounded text-center ">
+                        <img src="/images/kingdom-list-is-empty.png" alt="Empty bin" style="max-width: 400px;"
+                            class="empty">
+                        <p style="font-weight: 500;">No user found.</p>
+                    </div>
+                    <%}%>
+        </div>
+        <!--Container Main end-->
+        <script>
+            const search=() => {
+                let searchedText=document.getElementById('search-box').value.toUpperCase();
+                let resultTable=document.getElementById('resultTable');
+
+                let tr=resultTable.getElementsByTagName('tr');
+
+                for (let i=1; i<tr.length; i++) {
+                    let td_sub=tr[i].getElementsByTagName('td')[0];
+                    let td_series=tr[i].getElementsByTagName('td')[1];
+                    let td_email=tr[i].getElementsByTagName('td')[2];
+                    let td_college=tr[i].getElementsByTagName('td')[4];
+                    let td_date=tr[i].getElementsByTagName('td')[5];
+
+                    if (td_sub||td_series||td_email) {
+                        let textVal1=td_sub.textContent||td_sub.innerHTML;
+                        let textVal2=td_series.textContent||td_series.innerHTML;
+                        let textVal3=td_email.textContent||td_email.innerHTML;
+                        let textVal4=td_college.textContent||td_college.innerHTML;
+                        let textVal5=td_date.textContent||td_date.innerHTML;
+
+                        if (textVal1.toUpperCase().indexOf(searchedText)>-1||textVal2.toUpperCase().indexOf(searchedText)>-1||textVal3.toUpperCase().indexOf(searchedText)>-1||textVal4.toUpperCase().indexOf(searchedText)>-1||textVal5.toUpperCase().indexOf(searchedText)>-1) {
+                            tr[i].style.display=""
+                        }
+                        else {
+                            tr[i].style.display="none"
+                        }
+                    }
+                }
+            }
+            $('#subject').on('click', function () {
+                var $tbody=$('#resultTable tbody');
+
+                $('#topic').css("background-color", "white");
+                $('#subject').css("background-color", "gray");
+                $('#dropdownMenuLink').text("Name");
+                $tbody.find('tr').sort(function (a, b) {
+                    // console.log($(a).find('td p:first-child').text())
+                    var tda=$(a).find('td p:first-child').text()
+                    var tdb=$(b).find('td p:first-child').text()
+                    return tda>tdb? 1:tda<tdb? -1:0;
+                }).appendTo($tbody);
+
+            });
+            $('#topic').on('click', function () {
+                var $tbody=$('#resultTable tbody');
+
+                $('#subject').css("background-color", "white");
+                $('#topic').css("background-color", "gray");
+                $('#dropdownMenuLink').text("Date");
+                $tbody.find('tr').sort(function (a, b) {
+                    // console.log($(a).find('td p:first-child').text())
+                    var tda=$(a).find('.series').text()
+                    var tdb=$(b).find('.series').text()
+                    console.log(tda)
+                    return tda>tdb? 1:tda<tdb? -1:0;
+                }).appendTo($tbody);
+
+            });
+        </script>
+        <%- include('../partials/footer'); %>
+</body>
+
+</html>

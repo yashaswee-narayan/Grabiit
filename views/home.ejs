@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+    <%=data.title%>
+  </title>
+  <%- include('./partials/styles'); %>
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <!-- External css -->
+    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/css/slider.css" />
+</head>
+
+<body>
+  <!-- ************************************hero sec********************************************* -->
+  <section class="position-relative pb-5">
+    <div class="hero-image-container"></div>
+    <!--******************* nav bar **************-->
+    <%- include('./partials/navbar'); %>
+      <!-- ********************navbar end ************************-->
+      <div class="container-fluid mt-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 align-self-center">
+              <div class="col-12 col-lg-9">
+                <h1 class="hero-text m-auto mt-3">
+                  Improve Your Skills As the World Needs with
+                  <!-- <span class="brand-name">GrabItt</span> -->
+                  <img src="svg/logo.svg" alt="logo" width="150" style="margin-top: -10px; background-color:white;">
+                </h1>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <img src="/images/hero-img.png" class="w-100" alt="" />
+              <!-- <img src="/images/undraw_reading_re_29f8.svg" class="w-100" alt="" /> -->
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!-- *****************************************feature-sec ***************************-->
+
+  <section id="features" class="py-5">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <h2 class="text-center py-2 border-short headline">Our Features</h2>
+        </div>
+        <div class="row text-muted text-justify py-5">
+          <p class="description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+            velit at quidem eligendi maxime officiis inventore, laboriosam
+            sapiente placeat, voluptates, eaque reprehenderit doloribus?
+            Numquam, praesentium. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit.
+          </p>
+        </div>
+        <!-- start -->
+        <div class="row">
+          <!-- Individual boxes  -->
+          <div class="col-12 col-sm-6 col-lg-3 py-2">
+            <div class="round-corner">
+              <div class="shadow rounded-circle d-flex justify-content-center coloured-circles m-auto  mt-4">
+                <img src="images\accurate.png" alt="icon">
+                <!-- <i class="fas fa-book-open pt-3" style="font-size: 30px; color: var(--primary)"></i> -->
+              </div>
+              <div class="p-4">
+                <h5 class="text-center">Accurate & efficient</h5>
+                <p class="text-center mb-0" style="font-weight: bold">
+                  Get instant feedback
+                </p>
+                <p class="text-center mb-4 pt-1">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Illum, quasi?
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Individual boxes  -->
+          <div class="col-12 col-sm-6 col-lg-3 py-2">
+            <div class="round-corner">
+              <div class="rounded-circle d-flex justify-content-center coloured-circles mt-4 shadow m-auto ">
+                <img src="images/q.png" alt="icon">
+                <!-- <i class="fas fa-book-open pt-3" style="font-size: 30px; color: var(--primary)"></i> -->
+              </div>
+              <div class="p-4">
+                <h5 class="text-center">Selective Questions</h5>
+                <p class="text-center mb-0" style="font-weight: bold">
+                  Every single topic covered
+                </p>
+                <p class="text-center mb-4 pt-1">
+                  Lorem ipsum dolor sit amet consectetur
+                  (interview mei koi topic reh na jaaye)
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Individual boxes  -->
+          <div class="col-12 col-sm-6 col-lg-3 py-2">
+            <div class="round-corner">
+              <div class="rounded-circle d-flex justify-content-center coloured-circles mt-4 shadow m-auto ">
+                <img src="images/free.png" alt="icon">
+                <!-- <i class="fas fa-book-open pt-3" style="font-size: 30px; color: var(--primary)"></i> -->
+              </div>
+              <div class="p-4">
+                <h5 class="text-center">Free</h5>
+                <p class="text-center mb-0" style="font-weight: bold">
+                  No extra charge
+                </p>
+                <p class="text-center mb-4 pt-1">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Illum, quasi?
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Individual boxes  -->
+          <div class="col-12 col-sm-6 col-lg-3 py-2">
+            <div class="round-corner">
+              <div class="rounded-circle d-flex justify-content-center coloured-circles mt-4 shadow m-auto ">
+                <img src="images\mic.png" alt="icon">
+                <!-- <i class="fas fa-book-open pt-3" style="font-size: 30px; color: var(--primary)"></i> -->
+              </div>
+              <div class="p-4">
+                <h5 class="text-center">Guided with Speech</h5>
+                <p class="text-center mb-0" style="font-weight: bold">
+                  Every student matters
+                </p>
+                <p class="text-center mb-4 pt-1">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Illum, quasi?
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <!-- end -->
+      </div>
+
+    </div>
+  </section>
+  <!-- *****************************************courses-sec ************************ -->
+
+  <section class="py-5" style="background-color: var(--ash);">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <h2 class="text-center py-2 border-short headline">Our Courses</h2>
+        </div>
+        <div class="row text-muted text-justify py-5">
+          <p class="description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+            velit at quidem eligendi maxime officiis inventore, laboriosam
+            sapiente placeat, voluptates, eaque reprehenderit doloribus?
+            Numquam, praesentium. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit.
+          </p>
+        </div>
+
+        <div class="row" id="slider">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="/subject">
+                  <div class="border box px-2 shadow-sm mb-1" style="background-color:white;">
+                    <div class="course-img pt-5 pb-4">
+                      <img src="images\trees_ds-1.jpg" alt="Course-image">
+                    </div>
+                    <div class="px-3 pt-4">
+                      <!-- <h5 class="text-center">Accurate</h5> -->
+                      <p class="text-center mb-0" style="font-weight: bold">
+                        Trees
+                      </p>
+                      <p class="text-center mb-4 pt-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="/subject">
+                  <div class="border box px-2 shadow-sm mb-1" style="background-color: white;">
+                    <div class="course-img pt-5 pb-4 ">
+                      <img src="images\apti_home.jpg" alt="Course-image">
+                    </div>
+                    <div class="px-3 pt-4">
+                      <!-- <h5 class="text-center">Accurate</h5> -->
+                      <p class="text-center mb-0" style="font-weight: bold">
+                        Aptitude
+                      </p>
+                      <p class="text-center mb-4 pt-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="/subject">
+                  <div class="border box px-2 shadow-sm mb-1" style="background-color: white;">
+                    <div class="course-img pt-5 pb-4">
+                      <img src="images\graphs_home.jpg" alt="Course-image">
+                    </div>
+                    <div class="px-3 pt-4">
+                      <!-- <h5 class="text-center">Accurate</h5> -->
+                      <p class="text-center mb-0" style="font-weight: bold">
+                        Graphs
+                      </p>
+                      <p class="text-center mb-4 pt-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="/subject">
+                  <div class="border box px-2 shadow-sm mb-1" style="background-color: white;">
+                    <div class="course-img pt-5 pb-4">
+                      <img src="images\operating_system_home.png" alt="Course-image">
+                    </div>
+                    <div class="px-3 pt-4">
+                      <!-- <h5 class="text-center">Accurate</h5> -->
+                      <p class="text-center mb-0" style="font-weight: bold">
+                        Operating System
+                      </p>
+                      <p class="text-center mb-4 pt-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="/subject">
+                  <div class="border box px-2 shadow-sm mb-1" style="background-color: white;">
+                    <div class="course-img pt-5 pb-4">
+                      <img src="images\dbms2_home.jpg" alt="Course-image">
+                    </div>
+                    <div class="px-3 pt-4">
+                      <!-- <h5 class="text-center">Accurate</h5> -->
+                      <p class="text-center mb-0" style="font-weight: bold">
+                        DBMS
+                      </p>
+                      <p class="text-center mb-4 pt-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+        <!-- View more btn -->
+        <div class="w-100 d-flex justify-content-center mt-3  "> <a href="/subject"
+            class="btn btn-outline-primary rounded-0">View
+            More Series</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- *****************************************testimonials ***************************-->
+  <section class="py-5">
+    <div class="container-fluid">
+      <div class="container">
+
+        <div class="row mb-3">
+          <h2 class="text-center py-2 border-short headline">Testimonials</h2>
+        </div>
+      </div>
+      <div class="container py-5" style="background-color: var(--ash);">
+        <!-- Large circle -->
+        <div
+          class="rounded-circle coloured-circles enlarge shadow-sm me-3 mb-2 mt-0 d-flex justify-content-center align-items-center bg-white">
+
+          <i class="fa fa-quote-left align-items-center px-3" aria-hidden="true" style="font-size: 74px;"></i>
+
+        </div>
+
+        <!-- <div class="row d-flex justify-content-end px-5">
+          <div
+            class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center "
+            style="cursor: pointer;" onclick="prev()">
+            <i class="fa-solid fa-less-than px-1" style="font-size: 30px; color: var(--primary)"></i>
+          </div>
+          <div
+            class="rounded-circle coloured-circles shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center"
+            style="cursor: pointer;" onclick="next()">
+            <i class="fa-solid fa-greater-than px-1" style="font-size: 30px; color: var(--primary)"></i>
+          </div>
+        </div> -->
+        <div class="row ">
+          <div class="col-lg-3 d-flex flex-column align-self-center">
+            <div class="pt-3  ms-5 space">
+              <h2 class="headline" style="font-size: 38px;">
+                What others say about us.
+              </h2>
+
+              <p class="pt-3 description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, excepturi!</p>
+            </div>
+
+          </div>
+          <div class="col-lg-9 col-sm-10 right">
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <!-- single slide -->
+                <div class="swiper-slide">
+                  <div class="border box py-3 px-2 shadow-sm mb-1" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images\viewer1_home.jpg" alt="Course-image" width="240" height="170"
+                        style="object-fit: cover;">
+                      <div class="rounded-circle shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center"
+                        style="height:50px; width: 50px">
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Eetii</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- single slide -->
+                <div class="swiper-slide">
+                  <div class="border box py-3 px-2 shadow-sm mb-1" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images\rewiew3.jpg" alt="Course-image" width="240" height="170"
+                        style="object-fit: cover;">
+                      <div class="rounded-circle shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center"
+                        style="height:50px; width: 50px">
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Naman</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- single slide -->
+                <div class="swiper-slide">
+                  <div class="border box py-3 px-2 shadow-sm mb-1" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images\review2_home.jpg" alt="Course-image" width="240" height="170"
+                        style="object-fit: cover;">
+                      <div class="rounded-circle shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center"
+                        style="height:50px; width: 50px">
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Sanya</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- single slide -->
+                <div class="swiper-slide">
+                  <div class="border box py-3 px-2 shadow-sm mb-1" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images\viewer1_home.jpg" alt="Course-image" width="240" height="170"
+                        style="object-fit: cover;">
+                      <div class="rounded-circle shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center"
+                        style="height:50px; width: 50px">
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Naman</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- single slide -->
+                <div class="swiper-slide">
+                  <div class="border box py-3 px-2 shadow-sm mb-1" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images\review2_home.jpg" alt="Course-image" width="240" height="170"
+                        style="object-fit: cover;">
+                      <div class="rounded-circle shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center"
+                        style="height:50px; width: 50px">
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Naman</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- single slide -->
+                <div class="swiper-slide">
+                  <div class="border box py-3 px-2 shadow-sm mb-1" style="background-color: white;">
+                    <div class="course-img pb-2">
+                      <img src="images\rewiew3.jpg" alt="Course-image" width="240" height="170"
+                        style="object-fit: cover;">
+                      <div class="rounded-circle shadow me-3 mb-2 mt-0 d-flex justify-content-center align-items-center"
+                        style="height:50px; width: 50px">
+                        <i class="fa fa-quote-right align-items-center px-3" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                    <div class=" pt-1">
+                      <p class=" pt-1 ps-1">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Illum, quasi?
+                      </p>
+                      <h5 class=" ps-1" style="font-weight: bold; color:var(--primary)">Naman</h5>
+                      <p class="mb-0 ps-1 pb-2" style="font-style: italic;">
+                        Student
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <!-- end -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- *****************************************get in touch ***************************-->
+  <section id="contact-us" class="my-3 p-2">
+    <div class="container mt-0">
+      <div class="container-fluid ">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 d-flex flex-row mx-auto">
+            <img src="svg/newsletter.svg" class="w-100 mirror-image" alt="" class="m-auto" />
+            <!-- <div class="d-flex flex-column justify-content-end pb-4 ms-0">
+                        <div class="row  mb-5 ">
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                        </div>
+                        <div class="row mb-5 ">
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                        </div>
+                        <div class="row mb-5 ">
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                        </div>
+                        <div class="row mb-5 ">
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                          <div class="col mx-2 contact ">
+          
+                          </div>
+                        </div>
+          
+                      </div> -->
+          </div>
+          <div class="col-lg-6  align-self-center mx-auto">
+            <div class="row">
+              <h2 class="headline">
+                Learn how
+                <img src="svg/logo.svg" alt="logo" width="120" style="margin-top: -10px;  "> <br />
+                can help you in <br />getting your dream job.
+              </h2>
+            </div>
+            <div class="row">
+              <h3 class="mb-0 pt-5 pb-3" style="color: var(--primary); font-family: 'Lobster', serif;">
+                Subscribe us
+              </h3>
+              <form
+                action="https://haxworld.us13.list-manage.com/subscribe/post?u=3b39f90dfbf84fccd460bd7f7&amp;id=02e3ab77df"
+                method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+                target="_blank" novalidate>
+                <div class="row ">
+                  <div class="form-floating col-sm-6 description ">
+                    <input type="email" name="EMAIL" class="form-control rounded-0" id="mce-EMAIL"
+                      placeholder="name@example.com">
+                    <label for="mce-EMAIL" class="ps-4" name="EMAIL">Email address</label>
+                  </div>
+                  <div class="col-sm-6 shift-left">
+                    <button type="submit" class="btn px-4 py-3 mt-0 rounded-0 sub_button">Surprise Me</button>
+                  </div>
+                  <div id="mce-responses" class="clear foot">
+                    <div class="response  text-danger" id="mce-error-response" style="display:none"></div>
+                    <div class="response  text-success" id="mce-success-response" style="display:none"></div>
+                  </div>
+                </div>
+              </form>
+              <script type='text/javascript'
+                src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+              <script
+                type='text/javascript'>(function ($) { window.fnames=new Array(); window.ftypes=new Array(); fnames[0]='EMAIL'; ftypes[0]='email'; fnames[1]='FNAME'; ftypes[1]='text'; fnames[2]='LNAME'; ftypes[2]='text'; fnames[3]='ADDRESS'; ftypes[3]='address'; fnames[4]='PHONE'; ftypes[4]='phone'; }(jQuery)); var $mcj=jQuery.noConflict(true);</script>
+              <!-- end -->
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- *****************************************footer ***************************-->
+  <%- include('./partials/footer'); %>
+
+    <!-- Scripts -->
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+    <!-- Swiper -->
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <!-- Slider -->
+    <script src="/js/slide.js"></script>
+    <!-- Testimonial -->
+    <!-- <script src="/js/testimonial-slide.js"></script> -->
+
+</body>
+
+</html>

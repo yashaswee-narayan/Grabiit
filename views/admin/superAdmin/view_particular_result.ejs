@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        <%=data.title%>
+    </title>
+    <meta name="description" content="">
+    <%- include('../partials/head'); %>
+        <link rel="stylesheet" href="/css/view_result.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body id="body-pd">
+    <%- include('../partials/header'); %>
+        <!--Container Main start-->
+        <div class="row px-0">
+
+            <!-- ------------------------------------------------------------ -->
+            <% if (testTakenList.length>=1) { %>
+                <div class="col-lg-12 px-4 shadow-sm my-4 rounded ">
+
+                    <div class="d-flex align-items-center">
+                        <div class="ps-2 search-box shadow p-1">
+                            <!-- <button class="btn shadow-sm px-3 text-clack ">
+                            <i class="fa-solid fa-search pe-2"></i>Search</button> -->
+                            <input class="search-txt" type="text" name="" placeholder="Search" id="search-box"
+                                style="border: none; outline: none;" onkeyup="search()">
+                            <a class="search-btn" href="#"></a>
+                            <i class="fa-solid fa-search pe-2"></i>
+
+                        </div>
+
+                        <div class="dropdown">
+                            <a class="btn shadow btn-sm fs-6 py-1 dropdown-toggle" href="#" role="button"
+                                id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                Filter
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                <li><a class="dropdown-item" id="subject" style="cursor: pointer;">Subject</a></li>
+                                <li><a class="dropdown-item" id="topic" style="cursor: pointer;">Topic </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <table class="table mt-4" id="resultTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Subject Name</th>
+                                    <th scope="col">Series Name</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Total Score</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% let i=0 %>
+                                    <% for(test of testTakenList){%>
+
+                                        <tr onclick="window.location='/result/<%=test._id%>';" style="cursor: pointer;"
+                                            class="effect">
+
+                                            <td scope="row" class="content-tag">
+                                                <p style="font-weight: bold;">
+                                                    <%=test.subjectid.title%>
+                                                </p>
+                                                <p class="fs-7">
+                                                    <%=test.testid%>
+                                                </p>
+                                            </td>
+                                            <td class="content-tag py-4 new series">
+                                                <%=test.testseriesid.title%>
+                                            </td>
+                                            <td class="content-tag py-4 date">
+                                                <%=dateList[i]%>
+
+                                            </td>
+
+                                            <td class="content-tag py-4">
+                                                <%=test.score%>/<%=countQuestions[i++]%>
+                                            </td>
+
+                                        </tr>
+
+                                        <%}%>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+                <%}else{%>
+                    <div class="col-lg-12 px-4 shadow-sm my-4 rounded text-center ">
+                        <img src="/images/kingdom-list-is-empty.png" alt="Empty bin" style="max-width: 400px;"
+                            class="empty">
+                        <p style="font-weight: 500;">Waiting for you to take down a test</p>
+                    </div>
+                    <%}%>
+        </div>
+        <!--Container Main end-->
+        <script>
+            const search=() => {
+                let searchedText=document.getElementById('search-box').value.toUpperCase();
+                let resultTable=document.getElementById('resultTable');
+
+                let tr=resultTable.getElementsByTagName('tr');
+
+                for (let i=1; i<tr.length; i++) {
+                    let td_sub=tr[i].getElementsByTagName('td')[0];
+                    let td_series=tr[i].getElementsByTagName('td')[1];
+
+                    if (td_sub||td_series) {
+                        let textVal1=td_sub.textContent||td_sub.innerHTML;
+                        let textVal2=td_series.textContent||td_series.innerHTML;
+
+                        if (textVal1.toUpperCase().indexOf(searchedText)>-1||textVal2.toUpperCase().indexOf(searchedText)>-1) {
+                            tr[i].style.display=""
+                        }
+                        else {
+                            tr[i].style.display="none"
+                        }
+                    }
+                }
+            }
+            $('#subject').on('click', function () {
+                var $tbody=$('#resultTable tbody');
+
+                $('#topic').css("background-color", "white");
+                $('#subject').css("background-color", "gray");
+                $('#dropdownMenuLink').text("Subject");
+                $tbody.find('tr').sort(function (a, b) {
+                    // console.log($(a).find('td p:first-child').text())
+                    var tda=$(a).find('td p:first-child').text()
+                    var tdb=$(b).find('td p:first-child').text()
+                    return tda>tdb? 1:tda<tdb? -1:0;
+                }).appendTo($tbody);
+
+            });
+            $('#topic').on('click', function () {
+                var $tbody=$('#resultTable tbody');
+
+                $('#subject').css("background-color", "white");
+                $('#topic').css("background-color", "gray");
+                $('#dropdownMenuLink').text("Topic");
+                $tbody.find('tr').sort(function (a, b) {
+                    // console.log($(a).find('td p:first-child').text())
+                    var tda=$(a).find('.series').text()
+                    var tdb=$(b).find('.series').text()
+                    console.log(tda)
+                    return tda>tdb? 1:tda<tdb? -1:0;
+                }).appendTo($tbody);
+
+            });
+        </script>
+        <%- include('../partials/footer'); %>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<header class="header" id="header">
+    <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle" style="color: #43136e;"></i> </div>
+    <div class="d-flex align-items-center">
+        <div class="header_img">
+            <img src="" alt="user" id="profile-pic" />
+        </div>
+        <span class="px-2" id="name">
+        </span>
+    </div>
+
+</header>
+<div class=" l-navbar" id="nav-bar" style="background-color: #43136e;">
+    <nav class="nav">
+        <div>
+            <a href="/" class="nav_logo">
+                <h4 style="font-family: 'Lobster';" class="text-white fs-3">G</h4> <span class="nav_logo-name">
+                    <!-- <i class="fa-solid fa-g text-white fs-3"></i> <span class="nav_logo-name"> -->
+                    <h1 style="font-family: 'lobster' !important;" class="text-light">Grabitt
+                    </h1>
+                </span>
+            </a>
+            <div class="nav_list">
+                <a href="/dashboard" class="nav_link <%= data.title === 'Dashboard' && 'active' %>">
+                    <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span>
+                </a>
+                <a href="/edit-profile" class="nav_link <%= data.title === 'edit-profile' && 'active' %>"> <i
+                        class='bx bx-user nav_icon'></i> <span class="nav_name">Edit
+                        Profile</span>
+                </a>
+                <a href="/viewresult" class="nav_link <%= data.title === 'View Result' && 'active' %>"> <i
+                        class='bx bx-message-square-detail nav_icon'></i>
+                    <span class="nav_name">View Results</span>
+                </a>
+                <% if (data && data.role !=0) { %>
+
+
+                    <a href="/admin" class="nav_link <%= data.title === 'Admin Menu' && 'active' %>">
+                        <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Super Admin</span>
+                    </a>
+                    <!-- <a href="/admin/question/series"
+                        class="nav_link  ">
+                        <i class='bx bx-add-to-queue'></i><span class="nav_name">Manage Questions</span>
+                    </a> -->
+                    <% } %>
+                        <!--  <a href="#" class="nav_link">
+                        <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span>
+                    </a>
+                    <a href="#" class="nav_link">
+                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span>
+                    </a> -->
+            </div>
+        </div>
+        <a href="/logout" class="nav_link">
+            <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span>
+        </a>
+    </nav>
+</div>
+<script>
+    function getCookie(cookieName) {
+        let cookie={};
+        document.cookie.split(';').forEach(function (el) {
+            let [key, value]=el.split('=');
+            cookie[key.trim()]=value;
+        })
+        return cookie[cookieName];
+    }
+    var name=getCookie('name')||"User";
+    document.getElementById("name").innerText=decodeURIComponent(name);
+
+    var avatar=getCookie('avatar')||"Profile pic";
+
+    if (decodeURIComponent(avatar)=='j:null'||decodeURIComponent(avatar)=='null') {
+        document.getElementById("profile-pic").setAttribute('src', '/images/profile.png')
+    }
+    else
+        document.getElementById("profile-pic").setAttribute('src', decodeURIComponent(avatar))
+
+</script>

@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather:wght@300;700&family=Poppins:wght@400;600;700&display=swap");
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: #000000b9;
+}
+h6,h5{
+    font-weight: 700;
+}
+.features{
+    padding:1% 0%;
+   
+    background-color:#fff;
+   
+}
+.feature-box{
+    text-align: center;
+    padding:3% 0%;
+    padding-top: 1%;
+}
+.icon:hover{
+    color:#ff4c68;
+}
+.table {
+    font-size: 15px;
+    color: #140d74ab;
+  
+  }
+  
+  .content-tag {
+    font-family: "Poppins", sans-serif;
+    color: #000000bf;
+    font-size: 14px;
+    font-weight: 600;
+   
+  }
+  
+  .effect {
+    transform: scale(1);
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .effect:hover {
+    /* background: var(--primary); */
+    box-shadow: -3px -3px 7px rgba(200, 195, 195, 0.929), 3px 3px 5px rgba(231, 235, 241, 0.288) !important;
+  
+    transform: scale(1.002);
+  }

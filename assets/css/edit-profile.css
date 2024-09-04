@@ -1,0 +1,38 @@
+
+
+.hide
+{
+        height: 0;
+        overflow: hidden;
+        position: absolute;
+        width: 0;
+
+}
+
+label
+{
+   color: #3a3c91 ;
+   font-weight: bold;
+}
+
+label div
+{
+        color: rgb(255, 255, 255);
+        background-color: #4bb816;
+}
+
+.profile-pic {
+        border-radius: 50%;
+        clip-path: circle();
+        height: 150px;
+        width: 150px;
+        border: 5px solid #4f5255 !important;
+      }
+
+@media screen and (max-width:991.5px) {
+        .small
+{
+        padding-top: 1rem !important;
+}
+        
+}

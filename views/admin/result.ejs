@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        Result
+    </title>
+
+    <%- include('./partials/head'); %>
+        <!-- External css-->
+        <link rel="stylesheet" href="/css/result.css">
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+        <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+        <!-- Main Quill library -->
+        <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+        <!--  -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"
+            integrity="sha384-KiWOvVjnN8qwAZbuQyWDIbfCLFhLXNETzBQjA/92pIowpC0d2O3nppDGQVgwd2nB" crossorigin="anonymous">
+        <!-- The loading of KaTeX is deferred to speed up page rendering -->
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+            integrity="sha384-0fdwu/T/EQMsQlrHCCHoH10pkPLlKA1jL5dFyUOvB3lfeT2540/2g6YgSi2BL14p"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+            integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body id="body-pd">
+    <!-- Nav Bar -->
+    <%- include('./partials/header'); %>
+
+        <section id="body-color" class="pb-3">
+            <div class="container" id="download">
+                <div class="row">
+                    <div class="col-lg-2 my-3">
+                        <div
+                            class="bg-white text-center shadow-sm rounded h-100 d-flex flex-column align-items-center justify-content-center ">
+                            <%if (data.others.userid.avatar){%>
+                                <img src="<%=data.others.userid.avatar%>" alt="profile.pic"
+                                    class="profile-pic shadow-sm m-3 mb-2">
+                                <%}else{%>
+                                    <img src="/images/profile.png" alt="profile.pic"
+                                        class="profile-pic shadow-sm m-3 mb-2">
+                                    <%}%>
+
+                                        <h6 class="text-purple" style="font-weight: bold;">
+                                            <%=data.others.userid.name%>
+                                        </h6>
+                                        <button onclick="saveDiv()" class="btn btn-success">Download Report</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 my-3">
+                        <div class="bg-white shadow-sm rounded h-100">
+                            <h6 class="p-3 w-50 text-center  m-auto" style="font-weight: bold;">Assestment Details</h6>
+                            <div class="row px-3 m-auto ">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="d-flex text-purple">
+                                        <div class="mt-3 sizing">Test Id </div>
+                                        <div class="mt-3 sizing">:&nbsp;<%=data.others.testid%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="d-flex text-purple" id="topic-name">
+                                        <div class="mt-3 sizing">Topic Name </div>
+                                        <div class="mt-3 sizing">:&nbsp;<%=data.testSeries.title%>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row px-3 m-auto ">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="d-flex text-purple">
+                                        <div class="mt-3 sizing">Time Taken </div>
+                                        <div class="mt-3 sizing">:&nbsp;<%=data.others.timetaken%> minutes</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="d-flex text-purple">
+                                        <div class="mt-3 sizing">Total marks </div>
+                                        <div class="mt-3 sizing">:&nbsp;<%=data.allquestions.length%>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row px-3 m-auto ">
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="d-flex text-purple">
+                                        <div class="my-3 sizing">Marks obtained </div>
+                                        <div class="my-3 sizing">:&nbsp;<%=data.others.score%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="d-flex text-purple">
+                                        <div class="my-3 sizing">Accuracy </div>
+                                        <div class="my-3 sizing">:&nbsp;<%=data.others.accuracy%>%
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- <div class="px-3 d-flex flex-column">
+                                    <div class="d-flex justify-content-between change-dir">
+                                        <div class="d-flex text-purple">
+                                            <div class="mt-3 sizing">Test Id </div>
+                                            <div class="mt-3 sizing">:&nbsp;<%=data.others.testid%>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex text-purple ms-5" id="topic-name">
+                                            <div class="mt-3 sizing">Topic Name </div>
+                                            <div class="mt-3 sizing">:&nbsp;<%=data.testSeries.title%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between change-dir">
+                                        <div class="d-flex text-purple">
+                                            <div class="mt-3 sizing">Time Taken </div>
+                                            <div class="mt-3 sizing">:&nbsp;<%=data.others.timetaken%> minutes</div>
+                                        </div>
+                                        <div class="d-flex text-purple ms-5 set-width">
+                                            <div class="mt-3 sizing">Total marks </div>
+                                            <div class="mt-3 sizing">:&nbsp;<%=data.allquestions.length%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between change-dir">
+                                        <div class="d-flex text-purple">
+                                            <div class="my-3 sizing">Marks obtained </div>
+                                            <div class="my-3 sizing">:&nbsp;<%=data.others.score%>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex text-purple ms-5 set-width">
+                                            <div class="my-3 sizing">Accuracy </div>
+                                            <div class="my-3 sizing">:&nbsp;<%=data.others.accuracy%>%
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
+                <% let i=0%>
+
+                    <% for(Question of data.allquestions){%>
+
+                        <div class="row py-2">
+                            <div class="col-lg-12">
+
+                                <div class="bg-white shadow-sm rounded h-100 d-flex flex-column">
+
+                                    <div class="d-flex p-3">
+                                        <div class="">
+                                            <div class="rounded-circle border mx-4 d-flex justify-content-center coloured-circles shadow align-items-center"
+                                                style="font-weight:bold;">
+                                                <%=i+1%>
+
+                                            </div>
+                                        </div>
+                                        <div class="" style="font-weight:bold;" id="editorDisplay">
+                                            <%- Question.title%>
+                                        </div>
+
+                                    </div>
+                                    <%if (data.outcomeList[i]==1){%>
+                                        <i class="fa-solid fa-circle-check mx-5 px-5 py-2"
+                                            style="font-size: 30px; color: rgb(75, 178, 20);"></i>
+
+                                        <%}else{%>
+                                            <%if(data.choiceList[i] !=`<p class="design">Unanswered</p>`){%>
+                                                <i class="fa-solid fa-circle-xmark mx-5 px-5 py-2"
+                                                    style="font-size: 30px; color: rgb(230, 59, 59);"></i>
+                                                <%}%>
+                                                    <%}%>
+                                                        <div class="mx-5 px-5">
+                                                            <%if(data.choiceList[i]==`<p class="design">Unanswered</p>
+                                                                `){%>
+                                                                <div class="row m-auto pb-4">
+
+                                                                    <p class="m-auto" style="min-width: 131px;"
+                                                                        id="choiceDisplay">
+                                                                        <%-data.choiceList[i] %>
+                                                                    </p>
+
+                                                                </div>
+                                                                <%}else{%>
+                                                                    <div class="row m-auto ">
+                                                                        <div class="col-lg-6 table-border">
+                                                                            <span class="m-auto"
+                                                                                style="min-width: 131px; font-weight: bold;">Your
+                                                                                answer: </span>
+                                                                        </div>
+
+                                                                        <div class="col-lg-6 table-border">
+                                                                            <p class="m-auto" style="min-width: 131px;"
+                                                                                id="choiceDisplay">
+                                                                                <%-data.choiceList[i] %>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row m-auto">
+                                                                        <div class="col-lg-6 table-border "
+                                                                            style="border-top: 1px solid transparent;">
+
+                                                                            <p class="m-auto"
+                                                                                style="min-width: 131px; font-weight: bold;">
+                                                                                Correct
+                                                                                answer: </p>
+
+                                                                        </div>
+
+                                                                        <div class="col-lg-6 table-border except "
+                                                                            style="border-top: 1px solid transparent;">
+
+                                                                            <p class="m-auto" style="min-width: 131px;"
+                                                                                id="correctAnsDisplay">
+                                                                                <%- Question.correctAnswer%>
+                                                                            </p>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <%}%>
+
+                                                        </div>
+                                                        <%if(data.choiceList[i] !=`<p class="design">Unanswered</p>`){%>
+                                                            <div class="d-flex flex-column px-5 pt-3 pb-4 mx-5">
+                                                                <p class="mt-2">Explanation:</p>
+                                                                <mark id="expDisplay">
+                                                                    <%-Question.explaination%>
+                                                                </mark>
+                                                            </div>
+                                                            <%}%>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <%i++%>
+
+                            <%}%>
+
+                                <div class="row py-2">
+                                    <div class="col-lg-12">
+
+                                        <div class="bg-white shadow-sm rounded h-100 d-flex flex-column ">
+                                            <h6 class="p-3 pb-0 w-50 text-center  m-auto" style="font-weight: bold;">
+                                                Overall Feedback</h6>
+
+                                            <%if(data.others.accuracy <=50){%>
+                                                <div class="d-flex justify-content-around flex-wrap">
+                                                    <div class="my-5 p-3">
+                                                        <p>You need to work more on <b>
+                                                                <%=data.testSeries.title%>
+                                                            </b> concepts.</p>
+                                                        <p>Read it, and take the test again.</p>
+                                                        <p>We hope, you can do better next time.</p>
+                                                    </div>
+                                                    <div class="">
+                                                        <img src="/images/low.gif" alt="">
+                                                    </div>
+                                                </div>
+                                                <%}else{%>
+
+                                                    <%if(data.others.accuracy>90){%>
+                                                        <div class="d-flex justify-content-around flex-wrap">
+                                                            <div class="mt-5 p-3">
+                                                                <p>Going good. Keep it up!!</p>
+                                                                <p>You are awesome🔥</p>
+                                                            </div>
+                                                            <div class="mt-5">
+                                                                <img src="/images/mid.png" alt="" width="300"
+                                                                    height="300">
+                                                            </div>
+                                                        </div>
+                                                        <%}else{%>
+                                                            <div class="d-flex justify-content-around flex-wrap">
+                                                                <div class="my-5 p-3">
+                                                                    <p>Doing great!!</p>
+                                                                    <p>You can achieve 100% accuracy in no time.</p>
+                                                                </div>
+                                                                <div class="my-5">
+                                                                    <img src="/images/highest.png" alt="" width="350"
+                                                                        height="350">
+                                                                </div>
+                                                            </div>
+
+                                                            <%}%>
+                                                                <%}%>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+            </div>
+
+        </section>
+
+        <script>
+            window.jsPDF=window.jspdf.jsPDF;
+            var doc=new jsPDF('portrait', 'pt', 'letter');
+            var width=doc.internal.pageSize.getWidth();
+            var height=doc.internal.pageSize.getHeight();
+            function saveDiv(divId, title) {
+                doc.html(document.getElementById('body-color'), {
+                    html2canvas: {
+                        scale: 0.44
+                    },
+                    callback: function (doc) {
+                        doc.save('Result.pdf');
+                    },
+
+                });
+            }
+            $(document).ready(function () {
+                hljs.configure({
+                    languages: ['javascript', 'ruby', 'python']
+                });
+
+                let options={
+                    modules: {
+                        syntax: true,
+                    },
+                    readOnly: true,
+                    theme: 'bubble'
+
+                };
+            });
+
+
+        </script>
+
+        <%- include('./partials/footer'); %>
+
+</body>
+
+</html>

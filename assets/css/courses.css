@@ -1,0 +1,171 @@
+/* To specify the width of the 4 course content */
+.size
+{
+    min-width: 130px;
+    
+    cursor: pointer;
+}
+
+/* To specify the width of the topics */
+
+.size2
+{
+    min-width: 269px;
+    max-width: 310px;
+}
+.coloured-circles
+{
+  background-color: white;
+}
+/* circles of the course content */
+.extra
+{
+  transform: scale(1);
+  transition: .3s ease-in-out;
+}
+.extra:hover
+{
+  transform: scale(0.9);
+}
+/* For increasing the size of content circles */
+.incre {
+    width: 100px;
+    height: 100px;
+  }
+
+  .incre>img{
+    height: 60px;
+    width: 60px;
+  }
+
+  .round-corner
+  {
+    background-color: var(--highlight);
+    background-color: #f84f46;
+   
+    /* background-color: #66b0f0; */
+  }
+
+  /* TODO */
+
+  .view-topic-1
+  {
+    position: absolute;
+    /* visibility:hidden; */
+    display: none !important;
+  }
+
+  .show
+  {
+    position: static;
+    /* visibility: visible !important; */
+    display: flex !important;
+  }
+
+  p{
+    font-family: 'Poppins';
+    color: var(--secondary);
+  }
+
+  .styling
+  {
+    font-family: 'Poppins';
+    font-weight: 600;
+  }
+
+  /* Box shadows */
+  .neu
+  {
+    border-radius: 5%;
+    box-shadow:  -3px -3px 7px rgba(213, 208, 208, 0.929), 3px 3px 5px rgba(231, 235, 241, 0.288) !important;
+  }
+  .neu2
+  {
+    box-shadow: -3px -3px 7px #ffffff73,3px 3px 5px rgb(94, 104, 121,.288) !important;
+    transform: scale(1);
+    /* transition: all .8s ease-in-out; */
+    /* cursor: pointer; */
+  }
+  .neu2:hover
+  {
+    transform: scale(1.1);
+    box-shadow: inset -3px -3px 7px #ffffff73,inset 3px 3px 5px rgb(94, 104, 121,.288) !important;
+  }
+
+  /* Responsive behaviour */
+  @media screen and (max-width:1200px){
+
+    .flexible
+    {
+      display: flex;
+      flex-direction: column-reverse;
+      
+    }
+
+    .col-lg-8 {
+      width: 100%;
+     
+  }
+  .man
+  {
+    width: 50%;
+    margin: auto;
+  }
+  .col-lg-8 .col-12
+  {
+      margin: auto;
+  }
+   
+
+    .card-topics
+    {
+      /* border: 2px solid green; */
+      width: 85%;
+      margin: auto;
+    }
+    .size2
+    {
+      width: 100%;
+    }
+    
+  }
+  @media screen and (max-width:992px){
+    .card-topics
+    {
+      width: 100% ;
+    }
+  }
+  @media screen and (max-width:768px){
+
+    .course-box 
+    {
+      width: 75%;
+      margin: auto;
+      /* border: 2px solid green; */
+
+    }
+
+    .man{
+      width: 90%;
+    }
+    
+  }
+  @media screen and (max-width:576px){
+
+    .size2
+    {
+      margin-bottom: 1rem;
+    }
+    
+    
+  }
+  @media screen and (max-width:500px){
+
+    .course-box 
+    {
+      width: 100%;
+      margin: auto;
+    }
+    
+    
+  }

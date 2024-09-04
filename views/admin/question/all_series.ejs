@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        <%= data.title %>
+    </title>
+    <%- include('../partials/head'); %>
+        <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body id="body-pd">
+
+    <!-- Nav Bar -->
+    <%- include('../partials/header'); %>
+        <div class="container mt-2">
+            <div class="container-fluid">
+                <div class="d-flex">
+                    <button onclick="history.back()" class="align-self-center btn btn-light"><i
+                            class="fa-solid fa-arrow-left fs-4"></i></button>
+                    <h2 class="text-center m-auto fs-2 fw-bold">
+                        <%= data.title %>
+                    </h2>
+                    <a href="/admin/testseries/create" class="align-self-center btn btn-primary">Add Series</a>
+                </div>
+                <!-- table data -->
+                <table class="table mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sr No.</th>
+                            <th scope="col">Series Name</th>
+                            <th scope="col">Total Questions</th>
+                            <th scope="col">Manage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% series.forEach((e, index)=> { %>
+                            <tr>
+                                <td scope="row">
+                                    <p style="font-weight: bold;">
+                                        <%=index+1%>
+                                    </p>
+                                </td>
+                                <td scope="row">
+                                    <p style="font-weight: bold;">
+                                        <%=e.title%>
+                                    </p>
+                                </td>
+                                <td scope="row">
+                                    <%=e.count%>
+                                </td>
+                                <td class="text-start">
+                                    <div class="d-flex gap-1">
+                                        <button onclick="window.location.href='/admin/questions?q=<%=e._id%>'"
+                                            class="btn btn-outline-dark"><i class="fa-solid fa-eye"></i> View
+                                            Questions</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <%- include('../partials/footer'); %>
+            <script>
+
+            </script>
+</body>
+
+</html>

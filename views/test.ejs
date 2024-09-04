@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        Test
+    </title>
+
+    <%- include('./partials/styles'); %>
+        <!-- External css-->
+        <link rel="stylesheet" href="/css/test.css">
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/vs.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+        <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+        <!-- Main Quill library -->
+        <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+        <!--  -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"
+            integrity="sha384-KiWOvVjnN8qwAZbuQyWDIbfCLFhLXNETzBQjA/92pIowpC0d2O3nppDGQVgwd2nB" crossorigin="anonymous">
+        <!-- The loading of KaTeX is deferred to speed up page rendering -->
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+            integrity="sha384-0fdwu/T/EQMsQlrHCCHoH10pkPLlKA1jL5dFyUOvB3lfeT2540/2g6YgSi2BL14p"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2 ps-3">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-start">
+                <a class="navbar-brand my-auto" href="#">
+                    <img src="/svg/logo.svg" alt="logo" width="120">
+                </a>
+                <div class="ms-5">
+                    <h4 class="text-light">
+                        <%= subjectTitle %>
+                    </h4>
+                    <h6 class="text-light">Test id: <%= testId %>
+                    </h6>
+                </div>
+
+            </div>
+            <div class="d-flex justify-content-center w-25">
+                <div class="">
+                    <i class="fa-solid fa-hourglass text-light"></i>
+                    <span id="timer" class="text-white">
+                    </span>
+                </div>
+            </div>
+            <!--  -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+
+                <div class="d-flex">
+
+                    <button onclick="submittest()" class="btn text-white" type="button"><i
+                            class="fa-solid fa-arrow-right-from-bracket text-white"></i>
+                        Exit</button>
+                </div>
+            </div>
+
+            <!--  -->
+        </div>
+    </nav>
+    <section id="body-color">
+        <div class="container-fluid px-4 ">
+            <div class="row  my-3">
+                <div class="col-lg-9 shadow-sm bg-white ">
+                    <div class="row justify-content-center p-3">
+                        <p class="pe-4"
+                            style="line-height:19px; font-weight:500; font-size:15px; color:rgb(49, 46, 46); width: 95%;"
+                            id="editorDisplay">
+                        </p>
+                        <i class="fa-solid fa-volume-high my-auto" style="width: 5%;" id="tts"
+                            onclick="speak('editorDisplay');"></i>
+                    </div>
+                    <div class="row mt-5 justify-content-center">
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <div class="form-check shadow-sm d-flex">
+                                    <input type="checkbox" name="option" id="option1" onclick="onlyOne(this)"
+                                        class="form-check-input mx-2" value='<%- firstdata.options[0] %>' />
+
+                                    <label class="form-check-label" for="option1" id="optionEditor1"
+                                        style="width: 95%;">
+                                        1. <%- firstdata.options[0] %>
+                                    </label>
+                                    <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
+                                        style="width: 5%;" id="tts" onclick="speak('optionEditor1');"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-check shadow-sm d-flex">
+                                    <input type="checkbox" name="option" id="option2" onclick="onlyOne(this)"
+                                        class="form-check-input mx-2" value='<%- firstdata.options[1] %>' />
+                                    <label class="form-check-label" for="option2" id="optionEditor2"
+                                        style="width: 95%;">
+                                        2. <%- firstdata.options[1] %>
+                                    </label>
+                                    <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
+                                        style="width: 5%;" id="tts" onclick="speak('optionEditor2');"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-check shadow-sm d-flex">
+                                    <input type="checkbox" name="option" id="option3" onclick="onlyOne(this)"
+                                        class="form-check-input mx-2" value='<%- firstdata.options[2] %>' />
+                                    <label class="form-check-label" for="option3" id="optionEditor3"
+                                        style="width: 95%;">
+                                        3. <%- firstdata.options[2] %>
+                                    </label>
+                                    <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
+                                        style="width: 5%;" id="tts" onclick="speak('optionEditor3');"></i>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="form-check shadow-sm d-flex">
+                                    <input type="checkbox" name="option" id="option4" onclick="onlyOne(this)"
+                                        class="form-check-input mx-2" value='<%- firstdata.options[3] %>' />
+                                    <label class="form-check-label" for="option4" id="optionEditor4"
+                                        style="width: 95%;">
+                                        4. <%- firstdata.options[3] %>
+                                    </label>
+                                    <i class="fa-solid fa-volume-high my-auto d-flex justify-content-center"
+                                        style="width: 5%;" id="tts" onclick="speak('optionEditor4');"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 shadow-sm bg-white ">
+                    <!------  -->
+                    <div class="row">
+                        <h6 class="m-2">Questions</h6>
+                        <div class=" row ans-status">
+                            <div class="col ms-0"><i class="fa-solid fa-square ms-0" style="color:#A0E6B7"></i>Answered
+                            </div>
+                            <div class="col ms-0"><i class="fa-solid fa-square ms-0"
+                                    style="color:#F7B2B2"></i>Unanswered
+                            </div>
+                            <div class="col ms-0"><i class="fa-solid fa-square ms-0" style="color:#B9B5F6"></i>Review
+                                Later
+                            </div>
+                        </div>
+                        <div class=" scroll-bg">
+                            <div class="row scroll-div">
+                                <div class="row m-auto mt-3  ">
+                                    <div class="">
+                                        <% for( let index=0; index < total; index++ ) { %>
+                                            <button type="button" class="btn btn-circle m-1 unopened"
+                                                onclick="buttonclick(this)"
+                                                value="<%= moreQuestion[index].questionId %>">
+                                                <%= index+1 %>
+                                            </button>
+                                            <% } %>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row  m-auto">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <button class="btn btn-for-view shadow px-2 w-100" onclick="saveandprevious()">Save
+                                        &
+                                        prev.</button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class=" mb-3">
+                                    <button class="btn btn-for-view shadow px-2 w-100" onclick="skip()"
+                                        id="reviewBtn">Skip</button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class=" mb-3">
+                                    <button class="btn btn-for-view shadow px-2 w-100" onclick="saveandnext()"
+                                        id="nextBtn">Save &
+                                        next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!------ end questions -->
+                    <!------  -->
+                    <div class="row">
+                        <!-- <h6 class="m-2">Rough Work</h6>
+                        <textarea name="" id="" cols="30" rows="10"></textarea> -->
+
+                        <!-- voice command start -->
+                        <div class="col my-4">
+                            <h6 class="m-2">Voice Assistance</h6>
+                            <button id="StartVoice" class="btn btn-outline-success start-recording mt-4"><i
+                                    class="fa-solid fa-microphone"></i>Start</button>
+                            <p id="voiceText" class="d-none"></p>
+                        </div>
+                        <!-- voice command end -->
+                    </div>
+                    <!------ end questions -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-9 shadow-sm bg-white">
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <script>
+        var recognizing=false;
+        $("#StartVoice").bind("click", function () {
+            window.SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition
+            var recognition=new window.SpeechRecognition();
+            if (recognizing==true) {
+                recognizing=false;
+                $('#StartVoice').prop('class', 'btn btn-outline-success start-recording');
+                $('#StartVoice').text('Start');
+                $('#voiceText').prop('class', 'd-none');
+                return;
+            }
+            recognizing=false;
+            // recognition.continuous=true;
+            recognition.lang='en-US';
+            recognition.interimResults=true;
+            // recognition.maxAlternatives=1;
+            recognition.start();
+
+            recognition.addEventListener('start', (e) => {
+                recognizing=true;
+                $('#StartVoice').prop('class', 'btn btn-outline-danger start-recording');
+                $('#StartVoice').text('Stop');
+                $('#voiceText').prop('class', 'd-block');
+                $('#voiceText').text('')
+            })
+
+            recognition.addEventListener('end', (e) => {
+                if (recognizing==false) {
+                    recognition.abort();
+                    recognizing=false;
+                    $('#StartVoice').prop('class', 'btn btn-outline-success start-recording');
+                    $('#StartVoice').text('Start');
+                    $('#voiceText').prop('class', 'd-none');
+                    return;
+                }
+                recognition.start();
+            })
+
+            recognition.addEventListener('result', (e) => {
+                if (recognizing) {
+                    const rawText=Array.from(e.results)
+                        .map(result => result[0])
+                        .map(result => result.transcript)
+                        .join('')
+
+                    const finalText=rawText.trim().toLowerCase()
+                    if (e.results[0].isFinal) {
+                        switch (true) {
+                            case finalText.includes('next'):
+                                saveandnext();
+                                console.log("next question done");
+                                break;
+
+                            case finalText.includes('previous'):
+                                saveandprevious();
+                                console.log("prev question done");
+                                break;
+
+                            case finalText.includes('skip'):
+                                skip();
+                                console.log("prev question done");
+                                break;
+
+                            case finalText.includes('review'):
+                                reviewLater();
+                                console.log("prev question done");
+                                break;
+
+                            case finalText.includes('submit')||finalText.includes('exit'):
+                                recognition.abort();
+                                recognizing=false;
+                                submittest();
+                                break;
+
+                            case finalText.includes('stop'):
+                                recognition.abort();
+                                recognizing=false;
+                                break;
+
+                            case finalText.includes('read question')||finalText.includes('read questions'):
+                                speak('editorDisplay');
+                                console.log("speak done");
+                                break;
+
+                            //unselect option
+                            case finalText.includes('unselect option')||finalText.includes('unselect options')||finalText.includes('clear options')||finalText.includes('clear option'):
+                                $('input[type="checkbox"]').prop('checked', false);
+                                $('#reviewBtn').attr('onClick', 'skip()');
+                                $('#reviewBtn').text('Skip');
+                                break;
+                            //select options
+                            case finalText.includes('select option 1')||finalText.includes('select option one')||finalText.includes('select option first')||finalText.includes('select option 1st'):
+                                $("#option1").click();
+                                break;
+                            case finalText.includes('select option 2')||finalText.includes('select option two')||finalText.includes('select option second')||finalText.includes('select option 2nd'):
+                                $("#option2").click();
+                                break;
+                            case finalText.includes('select option 3')||finalText.includes('select option three')||finalText.includes('select option third')||finalText.includes('select option 3rd'):
+                                $("#option3").click();
+                                break;
+                            case finalText.includes('select option 4')||finalText.includes('select option four')||finalText.includes('select option fourth')||finalText.includes('select option 4th'):
+                                $("#option4").click();
+                                break;
+                            //read options
+                            case finalText.includes('read option 1')||finalText.includes('read option one')||finalText.includes('read option first')||finalText.includes('read option 1st'):
+                                speak('optionEditor1');
+                                break;
+                            case finalText.includes('read option 2')||finalText.includes('read option two')||finalText.includes('read option second')||finalText.includes('read option 2nd'):
+                                speak('optionEditor2');
+                                break;
+                            case finalText.includes('read option 3')||finalText.includes('read option three')||finalText.includes('read option third')||finalText.includes('read option 3rd'):
+                                speak('optionEditor3');
+                                break;
+                            case finalText.includes('read option 4')||finalText.includes('read option four')||finalText.includes('read option fourth')||finalText.includes('read option 4th'):
+                                speak('optionEditor4');
+                                break;
+
+                            default:
+                                $('#voiceText').addClass('text-danger');
+                                break;
+                        }
+                    }
+                    $('#voiceText').text(finalText)
+                    console.log(finalText);
+                }
+            })
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            localStorage.setItem('seriesId', '<%- firstdata.seriesId%>');
+            localStorage.setItem('subjectId', '<%- firstdata.subjectId %>');
+
+            if (!localStorage.getItem("selectedAnswers")) {
+                var answer=[{
+                    id: localStorage.getItem('currentQuesId'),
+                    choice: "",
+                    review: 0,
+                    skip: 0,
+                    opened: 1
+                }];
+                localStorage.setItem("selectedAnswers", JSON.stringify(answer))
+            }
+            isExists=false;
+            let btnColor=JSON.parse(localStorage.getItem("selectedAnswers")||"[]");
+            btnColor.forEach(function (checkbox) {
+                if (checkbox.id===localStorage.getItem('currentQuesId')) {
+                    $("input[value='"+checkbox.choice+"']").prop('checked', true);
+                }
+                if (checkbox.review===1) {
+                    $('#reviewBtn').prop('disabled', true);
+                    $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 reviewques');
+                } else if (checkbox.skip===1) {
+                    $('#reviewBtn').prop('disabled', true);
+                    $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 skipques');
+                } else if (checkbox.opened===1&&checkbox.choice==="") {
+                    $('#reviewBtn').prop('disabled', false);
+                    $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 unanswered');
+                } else {
+                    $('#reviewBtn').prop('disabled', false);
+                    $('#reviewBtn').attr('onClick', 'reviewLater()');
+                    $('#reviewBtn').text('Review');
+                    $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 answered');
+                }
+            });
+            $(`button[value="${localStorage.getItem('currentQuesId')}"]`).addClass("activeques");
+        });
+
+        const reviewLater=() => {
+            let reviewLater=JSON.parse(localStorage.getItem("selectedAnswers")||"[]");
+            reviewLater.forEach(function (checkbox) {
+                try {
+                    if (checkbox.id===localStorage.getItem('currentQuesId')) {
+                        checkbox.review=1;
+                        $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 reviewques activeques');
+                        $('#reviewBtn').prop('disabled', true);
+                    }
+                } catch {
+                    //
+                }
+                localStorage.setItem("selectedAnswers", JSON.stringify(reviewLater));
+            });
+            $("button.btn.btn-circle.m-1.activeques").next().click();
+        }
+
+        const saveandnext=() => {
+            let saveandnext=JSON.parse(localStorage.getItem("selectedAnswers")||"[]");
+            saveandnext.forEach(function (checkbox) {
+                if (checkbox.review===1) {
+                    if (checkbox.id===localStorage.getItem('currentQuesId')) {
+                        checkbox.review=0;
+                        $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 answered activeques');
+                        $('#reviewBtn').prop('disabled', false);
+                    }
+                }
+                localStorage.setItem("selectedAnswers", JSON.stringify(saveandnext));
+            });
+            $("button.btn.btn-circle.m-1.activeques").next().click();
+        }
+        const skip=() => {
+            // if not exist in array add new array
+            let skip=JSON.parse(localStorage.getItem("selectedAnswers")||"[]");
+            const currentQuesId=localStorage.getItem('currentQuesId');
+            const removeObj=() => {
+                const findIndex=skip.findIndex(a => a.id===currentQuesId)
+                findIndex!==-1&&skip.splice(findIndex, 1)
+            }
+            removeObj();
+            var answer={
+                id: currentQuesId,
+                choice: "",
+                review: 0,
+                skip: 1,
+                opened: 1
+            };
+            $(`button[value="${answer.id}"]`).prop('class', 'btn btn-circle m-1 skipques activeques');
+            skip.push(answer);
+            localStorage.setItem("selectedAnswers", JSON.stringify(skip));
+            $("button.btn.btn-circle.m-1.activeques").next().click();
+        }
+        const saveandprevious=() => {
+            let saveandprevious=JSON.parse(localStorage.getItem("selectedAnswers")||"[]");
+            saveandprevious.forEach(function (checkbox) {
+                if (checkbox.review===1) {
+                    if (checkbox.id===localStorage.getItem('currentQuesId')) {
+                        checkbox.review=0;
+                        $(`button[value="${checkbox.id}"]`).prop('class', 'btn btn-circle m-1 answered activeques');
+                        $('#reviewBtn').prop('disabled', false);
+                    }
+                }
+                localStorage.setItem("selectedAnswers", JSON.stringify(saveandprevious));
+            });
+            $("button.btn.btn-circle.m-1.activeques").prev().click();
+        }
+
+    </script>
+    <script>
+        function submittest() {
+            if (recognizing) {
+                recognition.abort();
+                recognizing=false;
+            }
+            window.speechSynthesis.cancel();
+            let testId='<%= testId %>';
+            let seriesId=localStorage.getItem('seriesId');
+            let subjectId=localStorage.getItem('subjectId');
+            let selectedAnswers=localStorage.getItem('selectedAnswers')||[]
+
+            const data={ testId, seriesId, subjectId, selectedAnswers };
+            fetch("/submittest", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+                .then((response) => {
+                    if (response.status==200) {
+                        localStorage.removeItem('seriesId');
+                        localStorage.removeItem('subjectId');
+                        localStorage.removeItem('currentQuesId');
+                        localStorage.removeItem('selectedAnswers');
+                        window.location.replace("/success");
+                    }
+                    // response.json()
+                    //     .then((data) => {
+                    //         console.log(data);
+                    //     })
+                    //     .catch((error) => {
+                    //         console.error("Error:", error);
+                    //     });
+                })
+
+        }
+    </script>
+    <script>
+        async function speak(params) {
+            window.speechSynthesis.cancel()
+            //  "Microsoft Neerja Online (Natural) - English (India)" 
+            let txt=$(`#${params}`).text();
+            await initVoices();
+            const u=new SpeechSynthesisUtterance(txt);
+            u.voice=speechSynthesis.getVoices().filter(function (voice) {
+                return voice.name=="Microsoft Aria Online (Natural) - English (United States)"
+            })[0];
+            speechSynthesis.speak(u);
+        }
+        function initVoices() {
+            return new Promise(function (res, rej) {
+                speechSynthesis.getVoices();
+                if (window.speechSynthesis.onvoiceschanged) {
+                    res();
+                } else {
+                    window.speechSynthesis.onvoiceschanged=() => res();
+                }
+            });
+        }
+    </script>
+
+    <script>
+        hljs.configure({
+            languages: ['javascript', 'ruby', 'python']
+        });
+
+        let options={
+            modules: {
+                syntax: true,
+            },
+            readOnly: true,
+            theme: 'bubble'
+
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        localStorage.setItem('currentQuesId', `<%- firstdata.questionId %>`)
+        //First Question
+        $('#editorDisplay').html(`<%- firstdata.question %>`);
+
+        //Timer left
+        var end=new Date('<%= timer %>');
+
+        var _second=1000;
+        var _minute=_second*60;
+        var _hour=_minute*60;
+        var _day=_hour*24;
+        var timer;
+
+        function showRemaining() {
+            var now=new Date();
+            var distance=end-now;
+            if (distance<0) {
+                clearInterval(timer);
+                document.getElementById('timer').innerHTML='EXPIRED!';
+                setTimeout(submittest(), 10000);
+                return;
+            }
+            var hours=Math.floor((distance%_day)/_hour);
+            var minutes=Math.floor((distance%_hour)/_minute);
+            var seconds=Math.floor((distance%_minute)/_second);
+
+            document.getElementById('timer').innerHTML=hours+':';
+            document.getElementById('timer').innerHTML+=minutes+':';
+            document.getElementById('timer').innerHTML+=seconds+' left';
+        }
+        timer=setInterval(showRemaining, 1000);
+
+
+    </script>
+    <script src="/js/exam.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        <%=data.title%>
+    </title>
+    <meta name="description" content="">
+    <%- include('./partials/head'); %>
+        <link rel="stylesheet" href="/css/view_result.css" />
+        <link rel="stylesheet" href="/css/edit-profile.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body id="body-pd">
+    <%- include('./partials/header'); %>
+        <!--Container Main start-->
+        
+        
+        <div class="container-fluid py-5">
+          <div class="container  my-5">
+            <form action="/edit-profile/update-info" method="post" enctype="multipart/form-data" >
+                   <div class="row mt-5 shadow">
+                  
+                      <div class="col-lg-3 col-md-12  ">
+                          <div style="width: 125px; margin: auto;" id="cont" class="pt-5" >
+                            
+                            <%if (data.user.avatar){%><img src="<%=data.user.avatar%>" alt="profile" id="preview-img"
+                            class="rounded-circle border border-3 border-white profile-pic " height="150" width="150" >
+                            <%}else{%>
+                                <img src="/images/profile.png" alt="profile"id="preview-img"
+                                class="rounded-circle border border-3 border-white profile-pic " height="150" width="150" > 
+                          <%}%>
+                          <label style="position: relative;">
+                            <input class="hide" name="avatar" type="file" id="inpFile">
+                            <div class="rounded-circle d-flex justify-content-center align-items-center" style="position: absolute; top: -58px; right: -141px;height: 34px; width: 34px;">
+                            <i class="fa-solid fa-pencil pe-2 ms-2" ></i> 
+                            </div>
+                          </label>
+                          <p style="font-size: small; color: black; margin-left: 12px;">Only png and jpg format allowed</p>
+                          </div>
+                      </div>
+                      <div class="col-lg-9 col-md-12 "> 
+
+                        
+                            <div class="row ">
+                              <div class="form-group col-lg-6 pt-5">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" value="<%=data.user.name%>" name="name" placeholder="Change name"required>
+                              </div>
+
+                              <div class="form-group col-lg-6 pt-5 small">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" value="<%=data.user.username%>" name="username" placeholder="Change username" required>
+                              </div>
+
+                                
+                                <div class="form-group col-lg-6 pt-3">
+                                  <label for="inputEmail4">Email</label>
+                                  <input type="email" class="form-control" name = "email" placeholder="Email" value="<%=data.user.email%>" disabled>
+                                </div>
+                                
+                                
+                              <div class="form-group  col-lg-6 pt-3">
+                                
+                                
+                              </div>
+                              <div class="form-group  col-lg-6 pt-3 ">
+                                <label for="collegeName">College Name</label>
+                                
+                                <input type="text" class="form-control" name="collegeName" placeholder="College Name" value="<%=data.user.collegeName%>">
+                                
+                              </div>
+
+                              <div class="form-group col-lg-3 pt-3">
+                                
+                                <label for="gradYear">Graduation Year</label>
+                                
+                                <input type="number" class="form-control" name="graduationYear" placeholder="Graduation Year" value="<%= data.user.graduationYear%>" >
+                                
+                              </div>
+                              
+                              <div class="pb-3">
+                                <input type="submit" class="button btn px-3 my-5" style="background:#3a3c91; color: white; font-weight: bold;" value="Update">
+                              </div>
+
+                              
+                              
+                            </div>
+                            
+                       </div> 
+                       
+                  </div>
+                  
+                </form> 
+
+          </div>
+          
+      </div>
+   
+
+        <%- include('./partials/footer'); %>
+        
+        <script>
+          const file = document.getElementById('inpFile');
+          const previewContainer = document.getElementById('cont')
+          const img = previewContainer.querySelector('#preview-img')
+  
+          file.addEventListener('change',function(){
+              const f = this.files[0];
+              if(f)
+              {
+                  const reader = new FileReader();
+  
+                  reader.addEventListener("load",function(){
+                      img.setAttribute("src",this.result)
+                      
+                  })
+  
+                  reader.readAsDataURL(f)
+              }
+          })
+      </script>
+        
+</body>
+
+</html>
+

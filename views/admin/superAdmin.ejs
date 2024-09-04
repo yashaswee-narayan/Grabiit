@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>
+        <%=data.title%>
+    </title>
+
+    <%- include('./partials/head'); %>
+
+        <!-- chart -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+            integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- external css link / -->
+        <link rel="stylesheet" href="/css/superAdmin.css" />
+
+</head>
+
+<body id="body-pd">
+
+    <section>
+        <!-- Nav Bar -->
+        <%- include('./partials/header'); %>
+            <div class="container">
+                <div class="container-fluid">
+                    <!-- <h2 class="text-center">
+                        <%= data.title %>
+                    </h2>
+                    <ul>
+                        <li><a href="/admin/question/create">Add Questions</a></li>
+                        <li><a href="/admin/testseries/create">Add Test Series</a></li>
+                        <li><a href="/admin/testseries">View Test Series</a></li>
+                    </ul>
+                </div>
+            </div>
+           
+    </section>
+    <!--Container Main start-->
+                    <div class="container-fluid py-4">
+                        <div class="row features mb-5">
+                            <div class="col-6 col-lg-4">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    onclick="window.location='/admin/users';"
+                                    style="cursor: pointer;background-color:#D7ECFB">
+                                    <div class="me-3">
+                                        <i class="icon fas fa-users fa-3x" style="color:#3343b7"></i>
+                                    </div>
+                                    <span class="px-2">
+                                        <h6>Total Users till date</h6>
+                                        <h5>
+                                            <%= data.usersCount %>
+                                        </h5>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-4">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm"
+                                    style="background-color:#FFF5DD">
+                                    <div class="me-3">
+                                        <i class="icon fas fa-pen-to-square fa-3x" style="color:#f7bb30"></i>
+                                    </div>
+                                    <span class="px-2">
+                                        <h6>Total test taken by Users</h6>
+                                        <h5>
+                                            <%= data.testsCount %>
+                                        </h5>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-4">
+                                <div onclick="window.location='/admin/question/series';"
+                                    class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    style="background-color:#FFE0E6; cursor: pointer;">
+                                    <div class="me-3">
+                                        <i class="icon fas fa-book fa-3x" style="color:#f6476a"></i>
+                                    </div>
+                                    <span class="px-2">
+                                        <h6>Total Series Available</h6>
+                                        <h5>
+                                            <%= data.seriesCount %>
+                                        </h5>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- feedback -->
+                            <div class="col-6 col-lg-4">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    onclick="window.location='/admin/feedback';"
+                                    style="cursor: pointer;background-color:#bdd9ed">
+                                    <div class="me-3">
+                                        <i class="fa-solid fa-message fa-3x" style="color:#144a70"></i>
+                                    </div>
+                                    <span class="px-2 my-auto">
+                                        <h6>View all feedback</h6>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- all questions -->
+                            <div class="col-6 col-lg-4">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    onclick="window.location='/admin/questions';"
+                                    style="cursor: pointer;background-color:#bdd9ed">
+                                    <div class="me-3">
+                                        <i class="fa-solid fa-circle-question fa-3x" style="color:#144a70"></i>
+                                    </div>
+                                    <span class="px-2 my-auto">
+                                        <h6>View All Questions</h6>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- add questions -->
+                            <div class="col-6 col-lg-2">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    onclick="window.location='/admin/question/create';"
+                                    style="cursor: pointer;background-color:#bdd9ed">
+                                    <div class="me-3">
+                                        <i class="fa-solid fa-clipboard-question fa-3x" style="color:#144a70"></i>
+                                    </div>
+                                    <span class="my-auto">
+                                        <h6>Add Question</h6>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- add series -->
+                            <div class="col-6 col-lg-2">
+                                <div class="d-flex justify-content-center px-2 py-4 my-1 shadow-sm effect"
+                                    onclick="window.location='/admin/testseries/create';"
+                                    style="cursor: pointer;background-color:#bdd9ed">
+                                    <div class="me-3">
+                                        <i class="fa-solid fa-book-medical fa-3x" style="color:#144a70"></i>
+                                    </div>
+                                    <span class="my-auto">
+                                        <h6>Add Series</h6>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3 mb-4">
+                            <div class="col-lg-6">
+                                <div class="class">
+                                    <div class="table_banner bg-white">
+                                        <h6 class="table_banner_title border-short mb-4">Manage Test Subjects</h6>
+                                    </div>
+
+                                    <div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Sno.</th>
+                                                    <th scope="col">Subject Name</th>
+                                                    <th scope="col">Series count</th>
+                                                    <!-- <th scope="col">View</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="effect" style="cursor: pointer;"
+                                                    onclick="window.location.href='/admin/testseries?q=624f00ffd864bf25802c6042'">
+                                                    <th scope="row" class="py-3 content-tag">1</th>
+                                                    <td class="content-tag py-3">Aptitude</td>
+                                                    <td class="content-tag fw-normal py-3 ">
+                                                        <%= data.aptitudeCount %>
+                                                    </td>
+                                                    <!-- <td class="content-tag py-3">@mdo</td> -->
+                                                </tr>
+                                                <tr class="effect" style="cursor: pointer;"
+                                                    onclick="window.location.href='/admin/testseries?q=624f0114d864bf25802c6044'">
+                                                    <th scope="row" class="py-3 content-tag">2</th>
+                                                    <td class="content-tag py-3">Core Subjects</td>
+                                                    <td class="content-tag fw-normal py-3 ">
+                                                        <%= data.coreCount %>
+                                                    </td>
+                                                    <!-- <td class="content-tag py-3">@mdo</td> -->
+                                                </tr>
+                                                <tr class="effect" style="cursor: pointer;"
+                                                    onclick="window.location.href='/admin/testseries?q=624f011bd864bf25802c6046'">
+                                                    <th scope="row" class="py-3 content-tag">3</th>
+                                                    <td class="content-tag py-3">DSA</td>
+                                                    <td class="content-tag fw-normal py-3 ">
+                                                        <%= data.dsaCount %>
+                                                    </td>
+                                                    <!-- <td class="content-tag py-3">@mdo</td> -->
+                                                </tr>
+                                                <tr class="effect" style="cursor: pointer;"
+                                                    onclick="window.location.href='/admin/testseries?q=624f0130d864bf25802c6048'">
+                                                    <th scope="row" class="py-3 content-tag">4</th>
+                                                    <td class="content-tag py-3">Verbal</td>
+                                                    <td class="content-tag fw-normal py-3 ">
+                                                        <%= data.verbalCount %>
+                                                    </td>
+                                                    <!-- <td class="content-tag py-3">@mdo</td> -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="">
+                                    <div class="table_banner bg-white">
+                                        <h6 class="table_banner_title border-short mb-4">Daily Tests being conducted
+                                        </h6>
+                                    </div>
+                                    <div>
+                                        <canvas id="chart" style="height: 50px; width: 100px;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <script>
+        const ctx=document.getElementById('chart').getContext('2d');
+        const myChart=new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels:  <%- JSON.stringify(data.dateCount)%>,
+                datasets: [{
+                    label: 'Tests conducted',
+                    data: <%- JSON.stringify(data.testCount)%>,
+                    backgroundColor:
+                        [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                    borderColor:
+                        [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+
+
+    <!-- Main end--------------- -->
+    <%- include('./partials/footer'); %>
+</body>
+
+</html>
+
+
+<!-- quill.root.innerHTML.split(' ').join(' &nbsp;') -->
